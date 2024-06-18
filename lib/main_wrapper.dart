@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:e_commerce_app/screens/home.dart';
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 
 class MainWrapper extends StatefulWidget {
   const MainWrapper({super.key});
@@ -36,7 +37,7 @@ class _MainWrapperState extends State<MainWrapper> {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               LineIcons.search,
               color: Colors.black,
             ),
@@ -44,7 +45,7 @@ class _MainWrapperState extends State<MainWrapper> {
           ),
           IconButton(
             icon: const Icon(
-              Icons.shopping_cart,
+              LineIcons.shoppingBag,
               color: Colors.black,
             ),
             onPressed: () {},

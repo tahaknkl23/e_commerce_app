@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:e_commerce_app/data/app_data.dart';
 import 'package:e_commerce_app/model/base_model.dart';
 import 'package:e_commerce_app/model/categories_model.dart';
+import 'package:e_commerce_app/screens/details.dart';
 import 'package:e_commerce_app/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -121,8 +122,15 @@ class _HomeState extends State<Home> {
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (context, index) {
                       return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Details(data: mainList[index], isCameFromMostPopularParty: false),
+                            ),
+                          );
+                        },
                         child: view(index, size, theme),
-                        onTap: () {},
                       );
                     },
                   ),
@@ -152,50 +160,60 @@ class _HomeState extends State<Home> {
                     itemBuilder: (context, index) {
                       BaseModel current = mainList[index];
                       return GestureDetector(
-                        onTap: () {},
-                        child: Column(
-                          children: [
-                            Container(
-                              width: size.width * 0.5,
-                              height: size.height * 0.3,
-                              margin: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3),
-                                image: DecorationImage(
-                                  image: AssetImage(current.imageUrl),
-                                  fit: BoxFit.cover,
-                                ),
-                                boxShadow: const [
-                                  BoxShadow(offset: Offset(0, 4), blurRadius: 5, color: Color.fromARGB(61, 0, 0, 0)),
-                                ],
-                              ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Details(data: mainList[index], isCameFromMostPopularParty: true),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2.0),
-                              child: Text(
-                                current.name,
-                                style: theme.displayMedium,
-                              ),
-                            ),
-                            RichText(
-                              text: TextSpan(
-                                text: "€ ",
-                                style: theme.titleSmall?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: primaryColor,
-                                ),
-                                children: [
-                                  TextSpan(
-                                    text: current.price.toString(),
-                                    style: theme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                          );
+                        },
+                        child: Hero(
+                          tag: current.imageUrl,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: size.width * 0.5,
+                                height: size.height * 0.3,
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(3),
+                                  image: DecorationImage(
+                                    image: AssetImage(current.imageUrl),
+                                    fit: BoxFit.cover,
                                   ),
-                                ],
+                                  boxShadow: const [
+                                    BoxShadow(offset: Offset(0, 4), blurRadius: 5, color: Color.fromARGB(61, 0, 0, 0)),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(top: 2.0),
+                                child: Text(
+                                  current.name,
+                                  style: theme.displayMedium,
+                                ),
+                              ),
+                              RichText(
+                                text: TextSpan(
+                                  text: "€ ",
+                                  style: theme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: primaryColor,
+                                  ),
+                                  children: [
+                                    TextSpan(
+                                      text: current.price.toString(),
+                                      style: theme.titleSmall?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -231,18 +249,21 @@ class _HomeState extends State<Home> {
       padding: const EdgeInsets.only(top: 15.0),
       child: Column(
         children: [
-          Container(
-            width: size.width * 0.6,
-            height: size.height * 0.35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(3),
-              image: DecorationImage(
-                image: AssetImage(data.imageUrl),
-                fit: BoxFit.cover,
+          Hero(
+            tag: data.id,
+            child: Container(
+              width: size.width * 0.6,
+              height: size.height * 0.35,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(3),
+                image: DecorationImage(
+                  image: AssetImage(data.imageUrl),
+                  fit: BoxFit.cover,
+                ),
+                boxShadow: const [
+                  BoxShadow(offset: Offset(0, 4), blurRadius: 5, color: Color.fromARGB(61, 0, 0, 0)),
+                ],
               ),
-              boxShadow: const [
-                BoxShadow(offset: Offset(0, 4), blurRadius: 5, color: Color.fromARGB(61, 0, 0, 0)),
-              ],
             ),
           ),
           Padding(

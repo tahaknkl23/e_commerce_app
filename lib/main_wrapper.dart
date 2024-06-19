@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:bottom_bar_matu/bottom_bar/bottom_bar_bubble.dart';
 import 'package:bottom_bar_matu/bottom_bar_item.dart';
 import 'package:e_commerce_app/screens/home.dart';
+import 'package:e_commerce_app/screens/search.dart';
 import 'package:e_commerce_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
@@ -15,6 +16,7 @@ class MainWrapper extends StatefulWidget {
 
 class _MainWrapperState extends State<MainWrapper> {
   final int _index = 0;
+  bool isSearchActive = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,24 +31,49 @@ class _MainWrapperState extends State<MainWrapper> {
           ),
           onPressed: () {},
         ),
-        title: FadeIn(
-          child: const Text(
-            'Home',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
+        title: isSearchActive
+            ? FadeIn(
+                delay: const Duration(milliseconds: 300),
+                child: const Text(
+                  'Search',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              )
+            : FadeIn(
+                delay: const Duration(milliseconds: 300),
+                child: const Text(
+                  'Home',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
         actions: [
           IconButton(
-            icon: const Icon(
-              LineIcons.search,
-              color: Colors.black,
-              size: 30,
-            ),
-            onPressed: () {},
+            icon: isSearchActive
+                ? const Icon(
+                    LineIcons.searchMinus,
+                    color: Colors.black,
+                    size: 30,
+                  )
+                : const Icon(
+                    LineIcons.search,
+                    color: Colors.black,
+                    size: 30,
+                  ),
+            onPressed: () {
+              setState(
+                () {
+                  isSearchActive = !isSearchActive;
+                },
+              );
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -58,7 +85,7 @@ class _MainWrapperState extends State<MainWrapper> {
           ),
         ],
       ),
-      body: const Home(),
+      body: isSearchActive ? const Search() : const Home(),
       bottomNavigationBar: BottomBarBubble(
         color: primaryColor,
         selectedIndex: _index,

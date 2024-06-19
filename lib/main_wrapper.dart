@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:bottom_bar_matu/bottom_bar/bottom_bar_bubble.dart';
 import 'package:bottom_bar_matu/bottom_bar_item.dart';
+import 'package:e_commerce_app/screens/cart.dart';
 import 'package:e_commerce_app/screens/home.dart';
 import 'package:e_commerce_app/screens/search.dart';
 import 'package:e_commerce_app/utils/constants.dart';
@@ -81,7 +82,14 @@ class _MainWrapperState extends State<MainWrapper> {
               color: Colors.black,
               size: 30,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Cart(),
+                ),
+              );
+            },
           ),
         ],
       ),

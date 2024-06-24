@@ -85,6 +85,7 @@ class _SearchState extends State<Search> {
                   ),
                 ),
               ),
+              
               SizedBox(
                 height: size.height * 0.01,
               ),

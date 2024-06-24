@@ -1,6 +1,9 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:e_commerce_app/widget/reuseable_button.dart';
+import 'package:e_commerce_app/widget/reuseable_row_for_cart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
 
@@ -58,7 +61,49 @@ class _CartState extends State<Cart> {
                       ),
                       SizedBox(
                         height: size.height * 0.01,
-                      )
+                      ),
+                      FadeInUp(
+                        delay: const Duration(milliseconds: 400),
+                        child: const ReUseAbleCartForRow(
+                          text: "Sub Total",
+                          price: 140.0,
+                        ),
+                      ),
+                      FadeInUp(
+                        delay: const Duration(milliseconds: 400),
+                        child: const ReUseAbleCartForRow(
+                          text: "Shipping",
+                          price: 140.0,
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.0),
+                        child: Divider(),
+                      ),
+                      FadeInUp(
+                        delay: const Duration(milliseconds: 400),
+                        child: const ReUseAbleCartForRow(
+                          text: "Total",
+                          price: 500,
+                        ),
+                      ),
+                      FadeInUp(
+                        delay: const Duration(milliseconds: 550),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: ReUseAbleButton(
+                            text: "CheckOut",
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const Cart(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

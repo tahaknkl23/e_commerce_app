@@ -1,10 +1,9 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:e_commerce_app/data/app_data.dart';
+import 'package:e_commerce_app/method/add_to_cart.dart';
 import 'package:e_commerce_app/screens/details.dart';
 import 'package:e_commerce_app/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../model/base_model.dart';
@@ -85,7 +84,7 @@ class _SearchState extends State<Search> {
                   ),
                 ),
               ),
-              
+
               SizedBox(
                 height: size.height * 0.01,
               ),
@@ -168,7 +167,7 @@ class _SearchState extends State<Search> {
                               backgroundColor: primaryColor,
                               child: IconButton(
                                 onPressed: () {
-                                  debugPrint("${current.name}Added to shopping list");
+                                  AddToCart.addToCart(current, context);
                                 },
                                 icon: const Icon(LineIcons.addToShoppingCart),
                                 color: Colors.white,

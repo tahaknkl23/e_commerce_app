@@ -4,10 +4,8 @@ import 'package:e_commerce_app/model/base_model.dart';
 import 'package:e_commerce_app/model/categories_model.dart';
 import 'package:e_commerce_app/screens/details.dart';
 import 'package:e_commerce_app/utils/constants.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
+
 
 class Home extends StatefulWidget {
   const Home({super.key});

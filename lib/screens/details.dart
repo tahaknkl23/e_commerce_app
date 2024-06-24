@@ -1,13 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:animate_do/animate_do.dart';
+import 'package:e_commerce_app/method/add_to_cart.dart';
 import 'package:e_commerce_app/utils/constants.dart';
 import 'package:e_commerce_app/widget/reuseable_button.dart';
 import 'package:e_commerce_app/widget/reuseable_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:e_commerce_app/model/base_model.dart';
-import 'package:flutter/widgets.dart';
 
 class Details extends StatefulWidget {
   const Details({
@@ -230,7 +228,7 @@ class _DetailsState extends State<Details> {
                 child: ReUseAbleButton(
                     text: "Add to cart",
                     onTap: () {
-                      print("${current.name}Add to cart");
+                      AddToCart.addToCart(current, context);
                     }),
               ),
             )
